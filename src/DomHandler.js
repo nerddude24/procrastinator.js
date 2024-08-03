@@ -26,7 +26,7 @@ function createTodoItemElement(item) {
 	const priority = item.getPriority();
 	const priorityToClass = {
 		[TodoItem.PRIORITIES.HIGH]: "todo-card-high-pr",
-		[TodoItem.PRIORITIES.MED]: "todo-card-med-pr",
+		[TodoItem.PRIORITIES.NORMAL]: "todo-card-med-pr",
 		[TodoItem.PRIORITIES.LOW]: "todo-card-low-pr",
 	};
 
