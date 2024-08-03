@@ -34,6 +34,6 @@ export default class TodoItem {
 	}
 
 	getDueDate() {
-		return format(this._dueDate, "MMM do, yyyy");
+		return format(this._dueDate, "MMMM do, yyyy");
 	}
 }
