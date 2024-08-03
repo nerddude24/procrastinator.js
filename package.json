@@ -4,7 +4,8 @@
 	"description": "A todo list web application for your procrastinating needs.",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "npx webpack",
+		"dev": "npx webpack --watch"
 	},
 	"repository": {
 		"type": "git",
