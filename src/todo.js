@@ -2,9 +2,9 @@ import { format, isValid } from "date-fns";
 
 export default class TodoItem {
 	static PRIORITIES = Object.freeze({
-		HIGH: 2,
-		NORMAL: 1,
-		LOW: 0,
+		HIGH: "high",
+		NORMAL: "normal",
+		LOW: "low",
 	});
 
 	constructor(title, desc, dueDate, priority) {
