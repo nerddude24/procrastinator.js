@@ -1,34 +1,34 @@
 {
-  "name": "procrastinator",
-  "version": "0.0.0",
-  "description": "A todo list web application for your procrastinating needs.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nerddude24/procrastinator.js.git"
-  },
-  "keywords": [
-    "todo",
-    "todolist"
-  ],
-  "author": "nerddude",
-  "license": "LGPL-2.1",
-  "bugs": {
-    "url": "https://github.com/nerddude24/procrastinator.js/issues"
-  },
-  "homepage": "https://github.com/nerddude24/procrastinator.js#readme",
-  "devDependencies": {
-    "css-loader": "^7.1.2",
-    "html-webpack-plugin": "^5.6.0",
-    "style-loader": "^4.0.0",
-    "webpack": "^5.93.0",
-    "webpack-cli": "^5.1.4"
-  },
-  "dependencies": {
-    "data-fns": "^1.1.0",
-    "reset-css": "^5.0.2"
-  }
+	"name": "procrastinator",
+	"version": "0.0.0",
+	"description": "A todo list web application for your procrastinating needs.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nerddude24/procrastinator.js.git"
+	},
+	"keywords": [
+		"todo",
+		"todolist"
+	],
+	"author": "nerddude",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/nerddude24/procrastinator.js/issues"
+	},
+	"homepage": "https://github.com/nerddude24/procrastinator.js#readme",
+	"devDependencies": {
+		"css-loader": "^7.1.2",
+		"html-webpack-plugin": "^5.6.0",
+		"style-loader": "^4.0.0",
+		"webpack": "^5.93.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"dependencies": {
+		"data-fns": "^1.1.0",
+		"reset-css": "^5.0.2"
+	}
 }
