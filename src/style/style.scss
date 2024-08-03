@@ -1,0 +1,58 @@
+$header-height: 7vh;
+$fg1: #77e4c8;
+$fg2: #36c2ce;
+$bg1: #478ccf;
+$bg2: #4535c1;
+$yellow: #f7df1e;
+
+$font-s: 16px;
+$font-m: 32px;
+$font-l: 40px;
+$font-xl: 64px;
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+header {
+	@include flex-center();
+	height: $header-height;
+	background-color: $bg2;
+
+	a {
+		color: white;
+	}
+
+	.fg-yellow {
+		color: $yellow;
+	}
+}
+
+main {
+	height: calc(100vh - $header-height);
+	background-color: $bg1;
+}
+
+footer {
+	@include flex-center();
+	background-color: black;
+	color: white;
+	height: 3vh;
+
+	font-size: $font-s;
+}
+
+.a-spaced {
+	margin-inline: 4px;
+}
+
+.a-nostyle,
+.a-nostyle:visited {
+	text-decoration: none;
+}
+
+.font-m {
+	font-size: $font-m;
+}
