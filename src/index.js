@@ -35,7 +35,7 @@ function test() {
 
 	const myItem2 = new TodoItem(
 		"yo",
-		"wassup",
+		"im an item",
 		Date.now(),
 		TodoItem.PRIORITIES.LOW
 	);
@@ -46,4 +46,4 @@ function test() {
 	addItemToProject(myProject, myItem2);
 }
 
-test()
+test();
