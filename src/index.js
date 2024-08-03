@@ -1,5 +1,8 @@
 import "reset-css";
-import "./style/style.scss";
+import "./style/template.scss";
+import "./style/project.scss";
+import "./style/todo.scss";
+
 import TodoItem from "./TodoItem";
 import TodoProject from "./TodoProject";
 import DomHandler from "./DomHandler";
