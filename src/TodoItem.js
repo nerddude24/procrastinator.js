@@ -36,4 +36,8 @@ export default class TodoItem {
 	getDueDate() {
 		return format(this._dueDate, "MMMM do, yyyy");
 	}
+
+	toggleCheck() {
+		this.done = !this.done;
+	}
 }
