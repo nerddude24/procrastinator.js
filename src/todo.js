@@ -1,4 +1,4 @@
-import { format, isValid } from "data-fns";
+import { format, isValid } from "date-fns";
 
 export default class TodoItem {
 	static PRIORITIES = Object.freeze({
@@ -7,13 +7,13 @@ export default class TodoItem {
 		LOW: 0,
 	});
 
-	constructor(title, desc, dueDate, priority, notes = [], done = false) {
+	constructor(title, desc, dueDate, priority) {
 		this.title = title;
 		this.desc = desc;
 		this._dueDate = dueDate;
 		this._priority = priority;
-		this.notes = notes;
-		this.done = done;
+		this.notes = [];
+		this.done = false;
 	}
 
 	setPriority(newPriority) {
