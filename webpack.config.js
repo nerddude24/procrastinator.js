@@ -18,6 +18,14 @@ module.exports = {
 				test: /\.jpg$/i,
 				type: "asset/resource",
 			},
+			{
+				test: /\.scss$/, // Matches .scss files
+				use: [
+					"style-loader", // Injects styles into the DOM
+					"css-loader", // Turns CSS into CommonJS
+					"sass-loader", // Compiles Sass to CSS
+				],
+			},
 		],
 	},
 	plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],

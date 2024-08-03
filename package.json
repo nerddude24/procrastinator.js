@@ -4,8 +4,8 @@
 	"description": "A todo list web application for your procrastinating needs.",
 	"main": "index.js",
 	"scripts": {
-		"build": "npx webpack",
-		"dev": "npx webpack --watch"
+		"build": "npx webpack --mode production",
+		"dev": "npx webpack --mode development --watch"
 	},
 	"repository": {
 		"type": "git",
@@ -24,6 +24,8 @@
 	"devDependencies": {
 		"css-loader": "^7.1.2",
 		"html-webpack-plugin": "^5.6.0",
+		"sass": "^1.77.8",
+		"sass-loader": "^16.0.0",
 		"style-loader": "^4.0.0",
 		"webpack": "^5.93.0",
 		"webpack-cli": "^5.1.4"
