@@ -9,9 +9,13 @@ import DomHandler from "./DomHandler";
 
 const projects = [];
 
+function saveData() {}
+function loadData() {}
+
 function addProject(project) {
 	projects.push(project);
 	DomHandler.renderContent(projects);
+	saveData();
 }
 
 function addItemToProject(project, item) {
@@ -25,6 +29,7 @@ function addItemToProject(project, item) {
 
 	projects[index].addItem(item);
 	DomHandler.renderContent(projects);
+	saveData();
 }
 
 function test() {
@@ -49,4 +54,20 @@ function test() {
 	addItemToProject(myProject, myItem2);
 }
 
-test();
+function start() {
+	// TODO: Check if there is data in localStorage then load it
+	loadData();
+
+	const myItem = new TodoItem(
+		"Your first todo!",
+		"take out the trash.",
+		new Date(2036, 7, 12),
+		TodoItem.PRIORITIES.NORMAL
+	);
+
+	const myProject = new TodoProject("My Project");
+	addProject(myProject);
+	addItemToProject(myProject, myItem);
+}
+
+start();
