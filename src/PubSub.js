@@ -1,5 +1,8 @@
 export default (function () {
-	_events = {};
+	let _events = {};
+	const EVENTS = Object.freeze({
+		UPDATE: "update",
+	});
 
 	function subscribe(eventName, fn) {
 		_events[eventName] = _events[eventName] || [];
@@ -29,5 +32,6 @@ export default (function () {
 		subscribe,
 		unsubscribe,
 		emit,
+		EVENTS,
 	};
 })();
