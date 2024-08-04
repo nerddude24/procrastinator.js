@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"description": "A todo list web application for your procrastinating needs.",
 	"main": "index.js",
+	"private": "false",
 	"scripts": {
 		"build": "npx webpack --mode production",
 		"dev": "npx webpack --mode development --watch"
