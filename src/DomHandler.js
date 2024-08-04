@@ -1,3 +1,4 @@
+import PubSub from "./PubSub";
 import TodoItem from "./TodoItem";
 
 const content = document.querySelector("main");
@@ -68,4 +69,4 @@ function renderContent(projects) {
 	});
 }
 
-export default { renderContent };
+PubSub.subscribe(PubSub.EVENTS.UPDATE, renderContent);

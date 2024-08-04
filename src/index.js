@@ -6,16 +6,18 @@ import "./style/todo.scss";
 import TodoItem from "./TodoItem";
 import TodoProject from "./TodoProject";
 import DomHandler from "./DomHandler";
+import PubSub from "./PubSub";
 
 const projects = [];
 
 function saveData() {}
+PubSub.subscribe(PubSub.EVENTS.UPDATE, saveData);
+
 function loadData() {}
 
 function addProject(project) {
 	projects.push(project);
-	DomHandler.renderContent(projects);
-	saveData();
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
 function addItemToProject(project, item) {
@@ -28,8 +30,7 @@ function addItemToProject(project, item) {
 	}
 
 	projects[index].addItem(item);
-	DomHandler.renderContent(projects);
-	saveData();
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
 function test() {
