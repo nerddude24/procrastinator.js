@@ -13,7 +13,7 @@ export default class TodoItem {
 		this._dueDate = dueDate;
 		this._priority = priority;
 		this.notes = [];
-		this.done = false;
+		this.isDone = false;
 	}
 
 	setPriority(newPriority) {
@@ -38,6 +38,6 @@ export default class TodoItem {
 	}
 
 	toggleCheck() {
-		this.done = !this.done;
+		this.isDone = !this.isDone;
 	}
 }

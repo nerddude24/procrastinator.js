@@ -23,7 +23,7 @@ function createProjectElement(project) {
 }
 
 function createTodoItemElement(item) {
-	const { title, desc, done } = item;
+	const { title, desc, isDone } = item;
 	const priority = item.getPriority();
 	const priorityToClass = {
 		[TodoItem.PRIORITIES.HIGH]: "todo-card-high-pr",
@@ -36,9 +36,9 @@ function createTodoItemElement(item) {
 	const descEl = createElement("p", "todo-card-desc", desc);
 	const checkbox = createElement("input", "todo-card-check");
 	checkbox.type = "checkbox";
-	checkbox.checked = done;
+	checkbox.checked = isDone;
 
-	if (done) {
+	if (isDone) {
 		titleEl.classList.add("striked");
 		descEl.classList.add("striked");
 	}
