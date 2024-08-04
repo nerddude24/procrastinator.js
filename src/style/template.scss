@@ -16,6 +16,15 @@ $font-xl: 64px;
 	justify-content: center;
 }
 
+main {
+	padding: 16px;
+
+	display: flex;
+	justify-content: left;
+	align-items: stretch;
+	gap: 48px;
+}
+
 header {
 	@include flex-center();
 	height: $header-height;
@@ -55,4 +64,8 @@ footer {
 
 .font-m {
 	font-size: $font-m;
+}
+
+.dashed {
+	text-decoration: dashed;
 }

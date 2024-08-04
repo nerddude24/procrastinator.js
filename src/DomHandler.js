@@ -13,13 +13,13 @@ function createElement(type, cls, txt = "") {
 
 function createProjectElement(project) {
 	const { title } = project;
-	const el = createElement("div", "project-card");
+	const projectElement = createElement("div", "project-card");
 	const titleEl = createElement("h1", "project-card-title", title);
-	const listEl = createElement("div", "project-card-list");
+	const projectListElement = createElement("div", "project-card-list");
 
-	el.appendChild(titleEl);
-	el.appendChild(listEl);
-	return el;
+	projectElement.appendChild(titleEl);
+	projectElement.appendChild(projectListElement);
+	return { projectElement, projectListElement };
 }
 
 function createTodoItemElement(item) {
@@ -39,8 +39,8 @@ function createTodoItemElement(item) {
 	checkbox.checked = isDone;
 
 	if (isDone) {
-		titleEl.classList.add("striked");
-		descEl.classList.add("striked");
+		titleEl.classList.add("dashed");
+		descEl.classList.add("dashed");
 	}
 	el.classList.add(priorityToClass[priority]);
 
@@ -59,13 +59,14 @@ function renderContent(projects) {
 	clearContent();
 
 	projects.forEach((project) => {
-		const projectEl = createProjectElement(project);
+		const { projectElement, projectListElement } =
+			createProjectElement(project);
 
 		project.items.forEach((item) => {
-			projectEl.appendChild(createTodoItemElement(item));
+			projectListElement.appendChild(createTodoItemElement(item));
 		});
 
-		content.appendChild(projectEl);
+		content.appendChild(projectElement);
 	});
 }
 

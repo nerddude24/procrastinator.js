@@ -3,6 +3,8 @@ import "./style/template.scss";
 import "./style/project.scss";
 import "./style/todo.scss";
 
+import "./DomHandler";
+import "./LocalStorageHandler";
 import TodoItem from "./TodoItem";
 import TodoProject from "./TodoProject";
 import PubSub from "./PubSub";

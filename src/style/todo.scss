@@ -1,0 +1,40 @@
+$checkbox-size: 32px;
+
+.todo-card {
+	height: 20%;
+
+	display: grid;
+	grid-template-columns: 1fr $checkbox-size;
+	grid-template-rows: 1fr 2fr;
+	grid-template-areas: "title check" "desc check";
+
+	border-radius: 16px;
+	padding: 8px;
+
+	.todo-card-title {
+		grid-area: title;
+		font-size: 28px;
+		text-align: center;
+
+		/* this is needed for the text to be truly centered (its the offset of the check box) */
+		padding-left: $checkbox-size;
+	}
+
+	.todo-card-desc {
+		grid-area: desc;
+	}
+
+	.todo-card-check {
+		grid-area: check;
+	}
+}
+
+.todo-card-high-pr {
+	background-color: rgb(253, 186, 186);
+}
+.todo-card-med-pr {
+	background-color: white;
+}
+.todo-card-low-pr {
+	background-color: rgb(192, 245, 249);
+}
