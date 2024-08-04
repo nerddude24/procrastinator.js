@@ -39,9 +39,16 @@ function createTodoItemElement(item) {
 	checkbox.checked = isDone;
 
 	if (isDone) {
-		titleEl.classList.add("dashed");
-		descEl.classList.add("dashed");
+		el.classList.add("todo-card-done");
 	}
+
+	checkbox.addEventListener("change", (_) => {
+		item.toggleCheck();
+
+		if (item.isDone) el.classList.add("todo-card-done");
+		else el.classList.remove("todo-card-done");
+	});
+
 	el.classList.add(priorityToClass[priority]);
 
 	el.appendChild(titleEl);

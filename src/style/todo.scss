@@ -38,3 +38,8 @@ $checkbox-size: 32px;
 .todo-card-low-pr {
 	background-color: rgb(192, 245, 249);
 }
+
+.todo-card-done {
+	text-decoration: line-through;
+	filter: brightness(50%);
+}
