@@ -5,15 +5,9 @@ import "./style/todo.scss";
 
 import TodoItem from "./TodoItem";
 import TodoProject from "./TodoProject";
-import DomHandler from "./DomHandler";
 import PubSub from "./PubSub";
 
 const projects = [];
-
-function saveData() {}
-PubSub.subscribe(PubSub.EVENTS.UPDATE, saveData);
-
-function loadData() {}
 
 function addProject(project) {
 	projects.push(project);
@@ -57,7 +51,6 @@ function test() {
 
 function start() {
 	// TODO: Check if there is data in localStorage then load it
-	loadData();
 
 	const myItem = new TodoItem(
 		"Your first todo!",
