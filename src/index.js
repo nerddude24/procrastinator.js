@@ -84,5 +84,6 @@ function start() {
 }
 
 PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
+PubSub.subscribe(PubSub.EVENTS.DELETE_PROJECT, deleteProject);
 
 start();

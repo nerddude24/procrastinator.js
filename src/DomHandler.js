@@ -23,9 +23,17 @@ function createProjectElement(project) {
 	const projectElement = createElement("div", "project-card");
 	const titleEl = createElement("h1", "project-card-title", title);
 	const projectListElement = createElement("div", "project-card-list");
+	const deleteBtn = createXDeleteButton("project-card-del");
+
+	/* handle events */
+	deleteBtn.addEventListener("click", () => {
+		PubSub.emit(PubSub.EVENTS.DELETE_PROJECT, project);
+	});
+	/*---------------*/
 
 	projectElement.appendChild(titleEl);
 	projectElement.appendChild(projectListElement);
+	projectElement.appendChild(deleteBtn);
 
 	return { projectElement, projectListElement };
 }
