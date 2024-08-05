@@ -19,10 +19,11 @@ function createProjectElement(project) {
 
 	projectElement.appendChild(titleEl);
 	projectElement.appendChild(projectListElement);
+
 	return { projectElement, projectListElement };
 }
 
-function createTodoItemElement(item) {
+function createTodoItemElement(project, item) {
 	const { title, desc, isDone } = item;
 	const priority = item.getPriority();
 	const priorityToClass = {
@@ -35,25 +36,32 @@ function createTodoItemElement(item) {
 	const titleEl = createElement("h3", "todo-card-title", title);
 	const descEl = createElement("p", "todo-card-desc", desc);
 	const checkbox = createElement("input", "todo-card-check");
+	const deleteBtn = createElement("button", "todo-card-del", "x");
+
 	checkbox.type = "checkbox";
 	checkbox.checked = isDone;
 
-	if (isDone) {
-		el.classList.add("todo-card-done");
-	}
-
-	checkbox.addEventListener("change", (_) => {
+	/* handle events */
+	checkbox.addEventListener("change", () => {
 		item.toggleCheck();
 
 		if (item.isDone) el.classList.add("todo-card-done");
 		else el.classList.remove("todo-card-done");
 	});
 
+	deleteBtn.addEventListener("click", () => {
+		PubSub.emit(PubSub.EVENTS.DELETE_ITEM, { project, item });
+	});
+	/*---------------*/
+	if (isDone) {
+		el.classList.add("todo-card-done");
+	}
 	el.classList.add(priorityToClass[priority]);
 
 	el.appendChild(titleEl);
 	el.appendChild(descEl);
 	el.appendChild(checkbox);
+	el.appendChild(deleteBtn);
 
 	return el;
 }
@@ -70,7 +78,7 @@ function renderContent(projects) {
 			createProjectElement(project);
 
 		project.items.forEach((item) => {
-			projectListElement.appendChild(createTodoItemElement(item));
+			projectListElement.appendChild(createTodoItemElement(project, item));
 		});
 
 		content.appendChild(projectElement);

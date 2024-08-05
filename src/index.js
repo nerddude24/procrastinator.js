@@ -11,21 +11,38 @@ import PubSub from "./PubSub";
 
 const projects = [];
 
+function getProjectIndex(project) {
+	const index = projects.indexOf(project);
+	if (index === -1) {
+		console.error(`Project (${project.name}) doesn't exist in list!`);
+	}
+
+	return index;
+}
+
 function addProject(project) {
 	projects.push(project);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
 function addItemToProject(project, item) {
-	const index = projects.indexOf(project);
-	if (index === -1) {
-		console.error(
-			`Tried to add an item to a project (${project.name}) that doesn't exist!`
-		);
-		return;
-	}
+	const projectIndex = getProjectIndex(project);
+	if (projectIndex === -1) return;
 
-	projects[index].addItem(item);
+	projects[projectIndex].addItem(item);
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
+}
+
+function deleteTodoItem({ project, item }) {
+	project.removeItem(item);
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
+}
+
+function deleteProject(project) {
+	const projectIndex = getProjectIndex(project);
+	if (projectIndex === -1) return;
+
+	projects.splice(projectIndex, 1);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
@@ -65,5 +82,7 @@ function start() {
 	addProject(myProject);
 	addItemToProject(myProject, myItem);
 }
+
+PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
 
 start();
