@@ -65,3 +65,16 @@ footer {
 .font-m {
 	font-size: $font-m;
 }
+
+.x-btn {
+	position: absolute;
+
+	background: none;
+	border: none;
+
+	font-size: 24px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}

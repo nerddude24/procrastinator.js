@@ -11,6 +11,13 @@ function createElement(type, cls, txt = "") {
 	return el;
 }
 
+function createXDeleteButton(cls) {
+	const btn = createElement("button", "x-btn", "x");
+	btn.classList.add(cls);
+
+	return btn;
+}
+
 function createProjectElement(project) {
 	const { title } = project;
 	const projectElement = createElement("div", "project-card");
@@ -36,7 +43,7 @@ function createTodoItemElement(project, item) {
 	const titleEl = createElement("h3", "todo-card-title", title);
 	const descEl = createElement("p", "todo-card-desc", desc);
 	const checkbox = createElement("input", "todo-card-check");
-	const deleteBtn = createElement("button", "todo-card-del", "x");
+	const deleteBtn = createXDeleteButton("todo-card-del");
 
 	checkbox.type = "checkbox";
 	checkbox.checked = isDone;
