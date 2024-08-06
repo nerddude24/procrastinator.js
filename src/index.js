@@ -50,6 +50,10 @@ function deleteTodoItem({ project, item }) {
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
+function updateProjectTitle({ project, newTitle }) {
+	project.title = newTitle;
+}
+
 function deleteProject(project) {
 	const projectIndex = getProjectIndex(project);
 	if (projectIndex === -1) return;
@@ -95,8 +99,9 @@ function start() {
 	addItemToProject(myProject, myItem);
 }
 
-PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
-PubSub.subscribe(PubSub.EVENTS.DELETE_PROJECT, deleteProject);
 PubSub.subscribe(PubSub.EVENTS.ADD_ITEM, addTodoItem);
+PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
+PubSub.subscribe(PubSub.EVENTS.UPDATE_PROJECT_TITLE, updateProjectTitle);
+PubSub.subscribe(PubSub.EVENTS.DELETE_PROJECT, deleteProject);
 
 start();

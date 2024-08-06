@@ -37,7 +37,14 @@ function createProjectElement(project) {
 	const projectListElement = createElement("div", "project-card-list");
 	const deleteBtn = createXDeleteButton("project-card-del");
 
+	titleEl.setAttribute("contenteditable", "true");
+
 	/* handle events */
+	titleEl.addEventListener("DOMCharacterDataModified", () => {
+		const newTitle = titleEl.textContent;
+		PubSub.emit(PubSub.EVENTS.UPDATE_PROJECT_TITLE, { project, newTitle });
+	});
+
 	deleteBtn.addEventListener("click", () => {
 		PubSub.emit(PubSub.EVENTS.DELETE_PROJECT, project);
 	});

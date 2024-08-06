@@ -2,9 +2,10 @@ export default (function () {
 	let _events = {};
 	const EVENTS = Object.freeze({
 		UPDATE: "update",
-		DELETE_ITEM: "delItem",
-		DELETE_PROJECT: "delProject",
 		ADD_ITEM: "addItem",
+		DELETE_ITEM: "delItem",
+		UPDATE_PROJECT_TITLE: "updateProjectTitle",
+		DELETE_PROJECT: "delProject",
 	});
 
 	function subscribe(eventName, fn) {
