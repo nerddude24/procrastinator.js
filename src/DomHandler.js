@@ -22,6 +22,11 @@ function createProjectElement(project) {
 	const { title } = project;
 	const projectElement = createElement("div", "project-card");
 	const titleEl = createElement("h1", "project-card-title", title);
+	const addTodoBtn = createElement(
+		"button",
+		"project-card-add-btn",
+		"Add a new todo"
+	);
 	const projectListElement = createElement("div", "project-card-list");
 	const deleteBtn = createXDeleteButton("project-card-del");
 
@@ -32,6 +37,7 @@ function createProjectElement(project) {
 	/*---------------*/
 
 	projectElement.appendChild(titleEl);
+	projectElement.appendChild(addTodoBtn);
 	projectElement.appendChild(projectListElement);
 	projectElement.appendChild(deleteBtn);
 

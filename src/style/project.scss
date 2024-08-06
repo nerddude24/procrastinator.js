@@ -1,3 +1,6 @@
+$fg1: #77e4c8;
+$bg1: #478ccf;
+
 .project-card {
 	display: flex;
 	flex-direction: column;
@@ -14,7 +17,10 @@
 
 	.project-card-title {
 		text-align: center;
-		font-size: 32px;
+		font-size: 48px;
+
+		padding-bottom: 16px;
+		border-bottom: 1px solid rgb(102, 102, 102);
 	}
 
 	.project-card-list {
@@ -29,5 +35,22 @@
 	.project-card-del {
 		top: -4px;
 		right: 4px;
+	}
+
+	.project-card-add-btn {
+		height: 7%;
+
+		border: none;
+		border-radius: 25px;
+
+		font-size: 24px;
+
+		background-color: $bg1;
+		color: white;
+
+		&:hover {
+			background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+			cursor: pointer;
+		}
 	}
 }
