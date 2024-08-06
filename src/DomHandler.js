@@ -112,16 +112,29 @@ function clearContent() {
 function renderContent(projects) {
 	clearContent();
 
+	// Add all projects' elements
 	projects.forEach((project) => {
 		const { projectElement, projectListElement } =
 			createProjectElement(project);
 
+		// Add all items' elements inside of this project
 		project.items.forEach((item) => {
 			projectListElement.appendChild(createTodoItemElement(project, item));
 		});
 
 		content.appendChild(projectElement);
 	});
+
+	// Add 'create new project' button
+	const btnCreateProject = createElement(
+		"button",
+		"btn-add-project",
+		"Create a new project"
+	);
+	btnCreateProject.addEventListener("click", () => {
+		PubSub.emit(PubSub.EVENTS.ADD_PROJECT);
+	});
+	content.appendChild(btnCreateProject);
 }
 
 PubSub.subscribe(PubSub.EVENTS.UPDATE, renderContent);

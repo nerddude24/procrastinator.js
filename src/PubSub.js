@@ -4,6 +4,7 @@ export default (function () {
 		UPDATE: "update",
 		ADD_ITEM: "addItem",
 		DELETE_ITEM: "delItem",
+		ADD_PROJECT: "addProject",
 		UPDATE_PROJECT_TITLE: "updateProjectTitle",
 		DELETE_PROJECT: "delProject",
 	});
@@ -24,11 +25,16 @@ export default (function () {
 		}
 	}
 
-	function emit(eventName, data) {
+	function emit(eventName, data = null) {
 		if (_events[eventName]) {
-			_events[eventName].forEach((fn) => {
-				fn(data);
-			});
+			if (data)
+				_events[eventName].forEach((fn) => {
+					fn(data);
+				});
+			else
+				_events[eventName].forEach((fn) => {
+					fn();
+				});
 		}
 	}
 

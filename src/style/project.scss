@@ -1,5 +1,17 @@
 $fg1: #77e4c8;
 $bg1: #478ccf;
+$bg2: #4535c1;
+
+@mixin coolButton($bg, $fg) {
+	background-color: $bg;
+	color: $fg;
+
+	border: none;
+	&:hover {
+		background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
+		cursor: pointer;
+	}
+}
 
 .project-card {
 	display: flex;
@@ -38,19 +50,21 @@ $bg1: #478ccf;
 	}
 
 	.project-card-add-btn {
+		@include coolButton($bg1, white);
+
 		height: 7%;
-
-		border: none;
 		border-radius: 25px;
-
 		font-size: 24px;
-
-		background-color: $bg1;
-		color: white;
-
-		&:hover {
-			background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
-			cursor: pointer;
-		}
 	}
+}
+
+.btn-add-project {
+	@include coolButton($bg2, white);
+
+	height: 100px;
+	width: 400px;
+	border-radius: 25px;
+	font-size: 26px;
+
+	align-self: start;
 }

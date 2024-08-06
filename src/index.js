@@ -20,7 +20,7 @@ function getProjectIndex(project) {
 	return index;
 }
 
-function addProject(project) {
+function addPremadeProject(project) {
 	projects.push(project);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
@@ -47,6 +47,12 @@ function addTodoItem({ project, title, desc }) {
 
 function deleteTodoItem({ project, item }) {
 	project.removeItem(item);
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
+}
+
+function addProject() {
+	const project = new TodoProject("New Project");
+	projects.push(project);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
@@ -79,7 +85,7 @@ function test() {
 	);
 
 	const myProject = new TodoProject("PROJECT");
-	addProject(myProject);
+	addPremadeProject(myProject);
 	addItemToProject(myProject, myItem1);
 	addItemToProject(myProject, myItem2);
 }
@@ -95,7 +101,7 @@ function start() {
 	);
 
 	const myProject = new TodoProject("My Project");
-	addProject(myProject);
+	addPremadeProject(myProject);
 	addItemToProject(myProject, myItem);
 }
 
@@ -103,5 +109,6 @@ PubSub.subscribe(PubSub.EVENTS.ADD_ITEM, addTodoItem);
 PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
 PubSub.subscribe(PubSub.EVENTS.UPDATE_PROJECT_TITLE, updateProjectTitle);
 PubSub.subscribe(PubSub.EVENTS.DELETE_PROJECT, deleteProject);
+PubSub.subscribe(PubSub.EVENTS.ADD_PROJECT, addProject);
 
 start();
