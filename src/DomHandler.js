@@ -2,6 +2,8 @@ import PubSub from "./PubSub";
 import TodoItem from "./TodoItem";
 
 const content = document.querySelector("main");
+const todoPopup = document.querySelector("#todo-popup");
+let currentPopupProject = null;
 
 function createElement(type, cls, txt = "") {
 	const el = document.createElement(type);
@@ -16,6 +18,11 @@ function createXDeleteButton(cls) {
 	btn.classList.add(cls);
 
 	return btn;
+}
+
+function popupNewTodo(project) {
+	todoPopup.showModal();
+	currentPopupProject = project;
 }
 
 function createProjectElement(project) {
@@ -33,6 +40,10 @@ function createProjectElement(project) {
 	/* handle events */
 	deleteBtn.addEventListener("click", () => {
 		PubSub.emit(PubSub.EVENTS.DELETE_PROJECT, project);
+	});
+
+	addTodoBtn.addEventListener("click", () => {
+		popupNewTodo(project);
 	});
 	/*---------------*/
 
@@ -107,3 +118,21 @@ function renderContent(projects) {
 }
 
 PubSub.subscribe(PubSub.EVENTS.UPDATE, renderContent);
+
+todoPopup.querySelector("#todo-popup-cancel").addEventListener("click", () => {
+	todoPopup.close();
+});
+
+todoPopup.querySelector("#todo-popup-add").addEventListener("click", () => {
+	const title = todoPopup.querySelector("#todo-popup-title").value;
+	const desc = todoPopup.querySelector("#todo-popup-desc").value;
+
+	PubSub.emit(PubSub.EVENTS.ADD_ITEM, {
+		project: currentPopupProject,
+		title,
+		desc,
+	});
+
+	currentPopupProject = null;
+	todoPopup.close();
+});

@@ -4,6 +4,7 @@ export default (function () {
 		UPDATE: "update",
 		DELETE_ITEM: "delItem",
 		DELETE_PROJECT: "delProject",
+		ADD_ITEM: "addItem",
 	});
 
 	function subscribe(eventName, fn) {

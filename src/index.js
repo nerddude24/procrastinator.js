@@ -33,6 +33,18 @@ function addItemToProject(project, item) {
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
+function addTodoItem({ project, title, desc }) {
+	// ! Using new Date is temporary!
+	const todoItem = new TodoItem(
+		title,
+		desc,
+		new Date(),
+		TodoItem.PRIORITIES.NORMAL
+	);
+
+	addItemToProject(project, todoItem);
+}
+
 function deleteTodoItem({ project, item }) {
 	project.removeItem(item);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
@@ -85,5 +97,6 @@ function start() {
 
 PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
 PubSub.subscribe(PubSub.EVENTS.DELETE_PROJECT, deleteProject);
+PubSub.subscribe(PubSub.EVENTS.ADD_ITEM, addTodoItem);
 
 start();
