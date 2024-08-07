@@ -4,6 +4,16 @@ $bg-high-prio: rgb(253, 186, 186);
 $bg-nrml-prio: white;
 $bg-low-prio: rgb(192, 245, 249);
 
+@mixin popup() {
+	width: 30vw;
+	height: 50vh;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: stretch;
+}
+
 .todo-card {
 	height: max(15%, 100px);
 
@@ -42,6 +52,11 @@ $bg-low-prio: rgb(192, 245, 249);
 		top: -4px;
 		right: 4px;
 	}
+
+	&:hover {
+		cursor: pointer;
+		background-image: linear-gradient(rgb(0 0 0/5%) 0 0);
+	}
 }
 
 .todo-card-high-pr {
@@ -60,15 +75,7 @@ $bg-low-prio: rgb(192, 245, 249);
 }
 
 #addtodo-popup {
-	width: 30vw;
-	height: 50vh;
-
-	border-radius: 8px;
-
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	align-items: stretch;
+	@include popup();
 
 	h1 {
 		font-size: 32px;
@@ -122,6 +129,34 @@ $bg-low-prio: rgb(192, 245, 249);
 }
 
 #todo-info-popup {
+	@include popup();
+
+	font-size: 32px;
+	white-space: pre;
+	position: relative;
+	text-align: center;
+	line-height: 64px;
+
+	#todo-info-popup-done {
+		letter-spacing: 8px;
+	}
+
+	#todo-info-popup-close {
+		position: absolute;
+		font-size: 32px;
+		width: 32px;
+		height: 32px;
+		top: 8px;
+		right: 8px;
+
+		background: none;
+		border: none;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
 	/* Ensure dialog is hidden when not active */
 	&:not([open]) {
 		display: none;

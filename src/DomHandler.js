@@ -27,11 +27,15 @@ function popupNewTodo(project) {
 }
 
 function popupTodoInfo(item) {
-	todoInfoPopup.querySelector("#todo-info-popup-title").textContent =
-		item.title;
-	todoInfoPopup.querySelector("#todo-info-popup-desc").textContent = item.desc;
-	todoInfoPopup.querySelector("#todo-info-popup-date").textContent =
-		item.getDueDate();
+	todoInfoPopup.querySelector(
+		"#todo-info-popup-title"
+	).textContent = `Title: \r\n${item.title}`;
+	todoInfoPopup.querySelector(
+		"#todo-info-popup-desc"
+	).textContent = `Description: \r\n ${item.desc}`;
+	todoInfoPopup.querySelector(
+		"#todo-info-popup-date"
+	).textContent = `Due date: \r\n ${item.getDueDate()}`;
 
 	const todoInfoDoneEl = todoInfoPopup.querySelector("#todo-info-popup-done");
 	if (item.isDone) {
@@ -102,14 +106,16 @@ function createTodoItemElement(project, item) {
 	checkbox.checked = isDone;
 
 	/* handle events */
-	checkbox.addEventListener("change", () => {
+	checkbox.addEventListener("change", (e) => {
 		item.toggleCheck();
 
 		if (item.isDone) el.classList.add("todo-card-done");
 		else el.classList.remove("todo-card-done");
 	});
+	checkbox.addEventListener("click", (e) => e.stopPropagation()); // to stop triggering show todo info
 
-	deleteBtn.addEventListener("click", () => {
+	deleteBtn.addEventListener("click", (e) => {
+		e.stopPropagation(); // to stop triggering show todo info
 		PubSub.emit(PubSub.EVENTS.DELETE_ITEM, { project, item });
 	});
 
