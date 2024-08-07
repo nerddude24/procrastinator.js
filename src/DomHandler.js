@@ -40,7 +40,7 @@ function createProjectElement(project) {
 	titleEl.setAttribute("contenteditable", "true");
 
 	/* handle events */
-	titleEl.addEventListener("input", (_) => {
+	titleEl.addEventListener("input", () => {
 		const newTitle = titleEl.textContent;
 		PubSub.emit(PubSub.EVENTS.UPDATE_PROJECT_TITLE, { project, newTitle });
 	});
