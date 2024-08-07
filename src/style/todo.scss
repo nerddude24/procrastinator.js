@@ -56,13 +56,16 @@ $bg1: #478ccf;
 	width: 30vw;
 	height: 50vh;
 
-	font-size: 32px;
 	border-radius: 8px;
 
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
 	align-items: stretch;
+
+	h1 {
+		font-size: 32px;
+	}
 
 	#todo-popup-title {
 		font-size: 40px;
@@ -80,6 +83,14 @@ $bg1: #478ccf;
 		gap: 32px;
 
 		height: 20%;
+	}
+
+	label {
+		font-size: 24px;
+	}
+
+	#todo-popup-date {
+		height: 10%;
 	}
 
 	button {
