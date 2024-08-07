@@ -147,11 +147,13 @@ todoPopup.querySelector("#todo-popup-cancel").addEventListener("click", () => {
 todoPopup.querySelector("#todo-popup-add").addEventListener("click", () => {
 	const title = todoPopup.querySelector("#todo-popup-title").value;
 	const desc = todoPopup.querySelector("#todo-popup-desc").value;
+	const date = todoPopup.querySelector("#todo-popup-date").value;
 
 	PubSub.emit(PubSub.EVENTS.ADD_ITEM, {
 		project: currentPopupProject,
 		title,
 		desc,
+		date,
 	});
 
 	currentPopupProject = null;

@@ -20,14 +20,9 @@ function getProjectIndex(project) {
 	return index;
 }
 
-function addItemToProject({ project, title, desc }) {
-	// ! Using new Date is temporary!
-	const todoItem = new TodoItem(
-		title,
-		desc,
-		new Date(),
-		TodoItem.PRIORITIES.NORMAL
-	);
+function addItemToProject({ project, title, desc, date }) {
+	const todoItem = new TodoItem(title, desc, date, TodoItem.PRIORITIES.NORMAL);
+	console.log(todoItem.getDueDate());
 
 	project.addItem(todoItem);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
