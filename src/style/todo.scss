@@ -115,7 +115,14 @@ $bg-low-prio: rgb(192, 245, 249);
 		}
 	}
 
-	/* Ensure the dialog is hidden when not active */
+	/* Ensure dialog is hidden when not active */
+	&:not([open]) {
+		display: none;
+	}
+}
+
+#todo-info-popup {
+	/* Ensure dialog is hidden when not active */
 	&:not([open]) {
 		display: none;
 	}

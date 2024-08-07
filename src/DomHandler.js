@@ -2,7 +2,8 @@ import PubSub from "./PubSub";
 import TodoItem from "./TodoItem";
 
 const content = document.querySelector("main");
-const todoPopup = document.querySelector("#addtodo-popup");
+const addtodoPopup = document.querySelector("#addtodo-popup");
+const todoInfoPopup = document.querySelector("#todo-info-popup");
 let currentPopupProject = null;
 
 function createElement(type, cls, txt = "") {
@@ -21,8 +22,27 @@ function createXDeleteButton(cls) {
 }
 
 function popupNewTodo(project) {
-	todoPopup.showModal();
+	addtodoPopup.showModal();
 	currentPopupProject = project;
+}
+
+function popupTodoInfo(item) {
+	todoInfoPopup.querySelector("#todo-info-popup-title").textContent =
+		item.title;
+	todoInfoPopup.querySelector("#todo-info-popup-desc").textContent = item.desc;
+	todoInfoPopup.querySelector("#todo-info-popup-date").textContent =
+		item.getDueDate();
+
+	const todoInfoDoneEl = todoInfoPopup.querySelector("#todo-info-popup-done");
+	if (item.isDone) {
+		todoInfoDoneEl.textContent = "Completed!";
+		todoInfoDoneEl.style.color = "green";
+	} else {
+		todoInfoDoneEl.textContent = "Not Done!";
+		todoInfoDoneEl.style.color = "red";
+	}
+
+	todoInfoPopup.showModal();
 }
 
 function createProjectElement(project) {
@@ -92,6 +112,10 @@ function createTodoItemElement(project, item) {
 	deleteBtn.addEventListener("click", () => {
 		PubSub.emit(PubSub.EVENTS.DELETE_ITEM, { project, item });
 	});
+
+	el.addEventListener("click", () => {
+		popupTodoInfo(item);
+	});
 	/*---------------*/
 
 	if (isDone) {
@@ -141,24 +165,32 @@ function renderContent(projects) {
 
 PubSub.subscribe(PubSub.EVENTS.UPDATE, renderContent);
 
-todoPopup
+addtodoPopup
 	.querySelector("#addtodo-popup-cancel")
 	.addEventListener("click", () => {
-		todoPopup.close();
+		addtodoPopup.close();
 	});
 
-todoPopup.querySelector("#addtodo-popup-add").addEventListener("click", () => {
-	const title = todoPopup.querySelector("#addtodo-popup-title").value;
-	const desc = todoPopup.querySelector("#addtodo-popup-desc").value;
-	const date = todoPopup.querySelector("#addtodo-popup-date").value;
-
-	PubSub.emit(PubSub.EVENTS.ADD_ITEM, {
-		project: currentPopupProject,
-		title,
-		desc,
-		date,
+todoInfoPopup
+	.querySelector("#todo-info-popup-close")
+	.addEventListener("click", () => {
+		todoInfoPopup.close();
 	});
 
-	currentPopupProject = null;
-	todoPopup.close();
-});
+addtodoPopup
+	.querySelector("#addtodo-popup-add")
+	.addEventListener("click", () => {
+		const title = addtodoPopup.querySelector("#addtodo-popup-title").value;
+		const desc = addtodoPopup.querySelector("#addtodo-popup-desc").value;
+		const date = addtodoPopup.querySelector("#addtodo-popup-date").value;
+
+		PubSub.emit(PubSub.EVENTS.ADD_ITEM, {
+			project: currentPopupProject,
+			title,
+			desc,
+			date,
+		});
+
+		currentPopupProject = null;
+		addtodoPopup.close();
+	});

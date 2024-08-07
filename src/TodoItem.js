@@ -12,7 +12,6 @@ export default class TodoItem {
 		this.desc = desc;
 		this._dueDate = dueDate;
 		this._priority = priority;
-		this.notes = [];
 		this.isDone = false;
 	}
 
