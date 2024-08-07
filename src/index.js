@@ -8,6 +8,7 @@ import "./LocalStorageHandler";
 import TodoItem from "./TodoItem";
 import TodoProject from "./TodoProject";
 import PubSub from "./PubSub";
+import { loadData } from "./LocalStorageHandler";
 
 const projects = [];
 
@@ -22,7 +23,6 @@ function getProjectIndex(project) {
 
 function addItemToProject({ project, title, desc, date }) {
 	const todoItem = new TodoItem(title, desc, date, TodoItem.PRIORITIES.NORMAL);
-	console.log(todoItem.getDueDate());
 
 	project.addItem(todoItem);
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
@@ -52,7 +52,33 @@ function deleteProject(project) {
 }
 
 function start() {
-	// TODO: Check if there is data in localStorage then load it
+	const loadedData = loadData();
+
+	if (loadedData) {
+		console.log("Found data in local storage, loading...");
+
+		loadedData.forEach((projectJson) => {
+			const project = new TodoProject(projectJson["title"]);
+
+			projectJson["items"].forEach((itemJson) => {
+				const item = new TodoItem(
+					itemJson["title"],
+					itemJson["desc"],
+					itemJson["_dueDate"],
+					itemJson["_priority"]
+				);
+
+				project.addItem(item);
+			});
+
+			projects.push(project);
+		});
+
+		PubSub.emit(PubSub.EVENTS.UPDATE, projects);
+		return;
+	}
+
+	console.log("No data found in local storage, generating default preset...");
 
 	const myItem = new TodoItem(
 		"My first todo!",
