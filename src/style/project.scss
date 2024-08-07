@@ -1,6 +1,7 @@
 $fg1: #77e4c8;
 $bg1: #478ccf;
 $bg2: #4535c1;
+$bg-project-card: rgb(213, 213, 213);
 
 @mixin coolButton($bg, $fg) {
 	background-color: $bg;
@@ -26,7 +27,7 @@ $bg2: #4535c1;
 	gap: 16px;
 	flex-shrink: 0;
 	width: 25vw;
-	background-color: rgb(213, 213, 213);
+	background-color: $bg-project-card;
 
 	position: relative;
 

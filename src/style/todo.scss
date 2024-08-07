@@ -1,5 +1,8 @@
 $checkbox-size: 32px;
 $bg1: #478ccf;
+$bg-high-prio: rgb(253, 186, 186);
+$bg-nrml-prio: white;
+$bg-low-prio: rgb(192, 245, 249);
 
 .todo-card {
 	height: 10%;
@@ -42,13 +45,13 @@ $bg1: #478ccf;
 }
 
 .todo-card-high-pr {
-	background-color: rgb(253, 186, 186);
+	background-color: $bg-high-prio;
 }
 .todo-card-med-pr {
 	background-color: white;
 }
 .todo-card-low-pr {
-	background-color: rgb(192, 245, 249);
+	background-color: $bg-low-prio;
 }
 
 .todo-card-done {
