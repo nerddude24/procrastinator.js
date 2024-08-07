@@ -26,9 +26,9 @@ main {
 }
 
 header {
-	@include flex-center();
 	height: $header-height;
 	background-color: $bg2;
+	@include flex-center();
 
 	a {
 		color: white;
@@ -45,12 +45,13 @@ main {
 }
 
 footer {
-	@include flex-center();
 	background-color: black;
 	color: white;
 	height: 3vh;
 
 	font-size: $font-s;
+
+	@include flex-center();
 }
 
 .a-spaced {

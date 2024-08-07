@@ -50,21 +50,21 @@ $bg2: #4535c1;
 	}
 
 	.project-card-add-btn {
-		@include coolButton($bg1, white);
-
 		height: 7%;
 		border-radius: 25px;
 		font-size: 24px;
+
+		@include coolButton($bg1, white);
 	}
 }
 
 .btn-add-project {
-	@include coolButton($bg2, white);
-
 	height: 100px;
 	width: 400px;
 	border-radius: 25px;
 	font-size: 26px;
 
 	align-self: start;
+
+	@include coolButton($bg2, white);
 }

@@ -40,7 +40,7 @@ function createProjectElement(project) {
 	titleEl.setAttribute("contenteditable", "true");
 
 	/* handle events */
-	titleEl.addEventListener("DOMCharacterDataModified", () => {
+	titleEl.addEventListener("input", (_) => {
 		const newTitle = titleEl.textContent;
 		PubSub.emit(PubSub.EVENTS.UPDATE_PROJECT_TITLE, { project, newTitle });
 	});
@@ -92,6 +92,7 @@ function createTodoItemElement(project, item) {
 		PubSub.emit(PubSub.EVENTS.DELETE_ITEM, { project, item });
 	});
 	/*---------------*/
+
 	if (isDone) {
 		el.classList.add("todo-card-done");
 	}

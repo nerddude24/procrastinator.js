@@ -1,6 +1,6 @@
 {
 	"name": "procrastinator",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A todo list web application for your procrastinating needs.",
 	"main": "index.js",
 	"private": "false",

@@ -14,26 +14,13 @@ const projects = [];
 function getProjectIndex(project) {
 	const index = projects.indexOf(project);
 	if (index === -1) {
-		console.error(`Project (${project.name}) doesn't exist in list!`);
+		console.error(`Project (${project.title}) doesn't exist in list!`);
 	}
 
 	return index;
 }
 
-function addPremadeProject(project) {
-	projects.push(project);
-	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
-}
-
-function addItemToProject(project, item) {
-	const projectIndex = getProjectIndex(project);
-	if (projectIndex === -1) return;
-
-	projects[projectIndex].addItem(item);
-	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
-}
-
-function addTodoItem({ project, title, desc }) {
+function addItemToProject({ project, title, desc }) {
 	// ! Using new Date is temporary!
 	const todoItem = new TodoItem(
 		title,
@@ -42,7 +29,8 @@ function addTodoItem({ project, title, desc }) {
 		TodoItem.PRIORITIES.NORMAL
 	);
 
-	addItemToProject(project, todoItem);
+	project.addItem(todoItem);
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
 function deleteTodoItem({ project, item }) {
@@ -68,28 +56,6 @@ function deleteProject(project) {
 	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
-function test() {
-	const myItem1 = new TodoItem(
-		"hi",
-		"hello",
-		Date.now(),
-		TodoItem.PRIORITIES.HIGH
-	);
-	myItem1.toggleCheck();
-
-	const myItem2 = new TodoItem(
-		"yo",
-		"im an item",
-		Date.now(),
-		TodoItem.PRIORITIES.LOW
-	);
-
-	const myProject = new TodoProject("PROJECT");
-	addPremadeProject(myProject);
-	addItemToProject(myProject, myItem1);
-	addItemToProject(myProject, myItem2);
-}
-
 function start() {
 	// TODO: Check if there is data in localStorage then load it
 
@@ -101,11 +67,13 @@ function start() {
 	);
 
 	const myProject = new TodoProject("My Project");
-	addPremadeProject(myProject);
-	addItemToProject(myProject, myItem);
+	myProject.addItem(myItem);
+	projects.push(myProject);
+
+	PubSub.emit(PubSub.EVENTS.UPDATE, projects);
 }
 
-PubSub.subscribe(PubSub.EVENTS.ADD_ITEM, addTodoItem);
+PubSub.subscribe(PubSub.EVENTS.ADD_ITEM, addItemToProject);
 PubSub.subscribe(PubSub.EVENTS.DELETE_ITEM, deleteTodoItem);
 PubSub.subscribe(PubSub.EVENTS.UPDATE_PROJECT_TITLE, updateProjectTitle);
 PubSub.subscribe(PubSub.EVENTS.DELETE_PROJECT, deleteProject);
