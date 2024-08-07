@@ -58,6 +58,7 @@ $bg1: #478ccf;
 
 	font-size: 32px;
 	border-radius: 8px;
+
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -94,5 +95,10 @@ $bg1: #478ccf;
 			cursor: pointer;
 			background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
 		}
+	}
+
+	/* Ensure the dialog is hidden when not active */
+	&:not([open]) {
+		display: none;
 	}
 }
