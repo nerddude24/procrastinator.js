@@ -2,7 +2,7 @@ import PubSub from "./PubSub";
 import TodoItem from "./TodoItem";
 
 const content = document.querySelector("main");
-const todoPopup = document.querySelector("#todo-popup");
+const todoPopup = document.querySelector("#addtodo-popup");
 let currentPopupProject = null;
 
 function createElement(type, cls, txt = "") {
@@ -141,14 +141,16 @@ function renderContent(projects) {
 
 PubSub.subscribe(PubSub.EVENTS.UPDATE, renderContent);
 
-todoPopup.querySelector("#todo-popup-cancel").addEventListener("click", () => {
-	todoPopup.close();
-});
+todoPopup
+	.querySelector("#addtodo-popup-cancel")
+	.addEventListener("click", () => {
+		todoPopup.close();
+	});
 
-todoPopup.querySelector("#todo-popup-add").addEventListener("click", () => {
-	const title = todoPopup.querySelector("#todo-popup-title").value;
-	const desc = todoPopup.querySelector("#todo-popup-desc").value;
-	const date = todoPopup.querySelector("#todo-popup-date").value;
+todoPopup.querySelector("#addtodo-popup-add").addEventListener("click", () => {
+	const title = todoPopup.querySelector("#addtodo-popup-title").value;
+	const desc = todoPopup.querySelector("#addtodo-popup-desc").value;
+	const date = todoPopup.querySelector("#addtodo-popup-date").value;
 
 	PubSub.emit(PubSub.EVENTS.ADD_ITEM, {
 		project: currentPopupProject,
