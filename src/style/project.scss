@@ -24,6 +24,7 @@ $bg2: #4535c1;
 	border-radius: 8px;
 
 	gap: 16px;
+	flex-shrink: 0;
 	width: 25vw;
 	background-color: rgb(213, 213, 213);
 
@@ -68,6 +69,7 @@ $bg2: #4535c1;
 	border-radius: 25px;
 	font-size: 26px;
 
+	flex-shrink: 0;
 	align-self: start;
 
 	@include coolButton($bg2, white);
