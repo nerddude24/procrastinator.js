@@ -2,12 +2,14 @@ $checkbox-size: 32px;
 $bg1: #478ccf;
 
 .todo-card {
-	height: 20%;
+	height: 10%;
 
 	display: grid;
 	grid-template-columns: 1fr $checkbox-size;
 	grid-template-rows: 1fr 2fr;
-	grid-template-areas: "title check" "desc check";
+	grid-template-areas: "title check" "date check";
+
+	row-gap: 16px;
 
 	border-radius: 16px;
 	padding: 8px;
@@ -23,8 +25,8 @@ $bg1: #478ccf;
 		padding-left: $checkbox-size;
 	}
 
-	.todo-card-desc {
-		grid-area: desc;
+	.todo-card-date {
+		grid-area: date;
 	}
 
 	.todo-card-check {

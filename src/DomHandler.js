@@ -65,6 +65,7 @@ function createProjectElement(project) {
 function createTodoItemElement(project, item) {
 	const { title, desc, isDone } = item;
 	const priority = item.getPriority();
+	const dueDate = item.getDueDate();
 	const priorityToClass = {
 		[TodoItem.PRIORITIES.HIGH]: "todo-card-high-pr",
 		[TodoItem.PRIORITIES.NORMAL]: "todo-card-med-pr",
@@ -73,7 +74,7 @@ function createTodoItemElement(project, item) {
 
 	const el = createElement("article", "todo-card");
 	const titleEl = createElement("h3", "todo-card-title", title);
-	const descEl = createElement("p", "todo-card-desc", desc);
+	const dateEl = createElement("p", "todo-card-date", `Due: ${dueDate}`);
 	const checkbox = createElement("input", "todo-card-check");
 	const deleteBtn = createXDeleteButton("todo-card-del");
 
@@ -99,7 +100,7 @@ function createTodoItemElement(project, item) {
 	el.classList.add(priorityToClass[priority]);
 
 	el.appendChild(titleEl);
-	el.appendChild(descEl);
+	el.appendChild(dateEl);
 	el.appendChild(checkbox);
 	el.appendChild(deleteBtn);
 

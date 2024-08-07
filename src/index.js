@@ -55,7 +55,7 @@ function start() {
 	// TODO: Check if there is data in localStorage then load it
 
 	const myItem = new TodoItem(
-		"Your first todo!",
+		"My first todo!",
 		"take out the trash.",
 		new Date(2036, 7, 12),
 		TodoItem.PRIORITIES.NORMAL
